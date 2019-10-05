@@ -1,12 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Profile page</title>
+  <link href='https://fonts.googleapis.com/css?family=Poller+One' rel='stylesheet' type='text/css'>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+  <style>
+
+    @keyframes dance {
+      from {
+        left: 800px;
+      }
+    }
+
+    @-webkit-keyframes dance {
+      from {
+        left: 800px;
+      }
+    }
+
+    @-moz-keyframes dance {
+      from {
+        left: 800px;
+      }
+    }
+
+    @-ms-keyframes dance {
+      from {
+        left: 800px;
+      }
+    }
+
+    img {
+      animation: dance 4s;
+      -webkit-animation: dance 4s;
+      -moz-animation: dance 4s;
+      position: absolute;
+      top: 200px;
+      left: 400px;
+    }
+
+    .robot {
+      position: relative;
+      left: 200px;
+    }
+
+    .beep {
+      width: 5px;
+      height: 0;
+      border: 5px solid transparent;
+      border-top: 10px solid #fffb96;
+      border-bottom: 80px solid #b967ff;
+      position: relative;
+    	left: 140px;
+    }
+
+    @keyframes blink {
+      50% {
+        background: radial-gradient(circle, #01cdfe, transparent 40%), #ff71ce;
+        background-size: 75px 150px;
+      }
+    }
+
+    @-webkit-keyframes blink {
+      50% {
+        background: -webkit-radial-gradient(circle, #01cdfe, transparent 40%), #ff71ce;
+        background-size: 75px 150px;
+      }
+    }
+
+    @-moz-keyframes blink {
+      50% {
+        background: -moz-radial-gradient(circle, #01cdfe, transparent 40%), #ff71ce;
+        background-size: 75px 150px;
+      }
+    }
+    
+    .laser {
+      animation: blink .5s infinite;
+      -webkit-animation: blink .5s infinite;
+      -moz-animation: blink .5s infinite;
+    }
+
+    .brain {
+      background: radial-gradient(circle, white 15%, transparent 40%), #ff71ce;
+      background: -moz-radial-gradient(circle, white 15%, transparent 40%), #ff71ce;
+      background: -webkit-radial-gradient(circle, white 15%, transparent 40%), #ff71ce;
+      background-size: 75px 150px;
+      height: 150px;
+      width: 150px;
+      border-radius: 60px 60px 10px 10px;
+      border-bottom: 40px solid #05ffa1;
+      position: relative;
+      left: 70px;
+    }
+
+    .torso {
+      height: 0;
+      width: 140px;
+      border-top: 300px solid #01cdfe;
+      border-left: 75px solid transparent;
+      border-right: 75px solid transparent;
+      border-radius: 20px 20px 100px 100px;
+    }
+
+    .left {
+      font-family: 'Poller One', verdana, arial, sans-serif;
+      font-weight: bold;
+      font-size: 250px;
+      color: #fffb96;
+      transform: rotate(200deg);
+      -webkit-transform: rotate(200deg);
+      -moz-transform: rotate(200deg);
+      position: relative;
+      top: -320px;
+      left: -190px;
+      z-index: -1;
+    }
+
+    .right {
+      font-family: 'Poller One', verdana, arial, sans-serif;
+      font-weight: bold;
+      font-size: 250px;
+      color: #fffb96;
+      transform: scaleY(-1) rotate(20deg);
+      -webkit-transform: scaleY(-1) rotate(20deg);
+      -moz-transform: scaleY(-1) rotate(20deg);
+      position: relative;
+      top: -620px;
+      left: 190px;
+      z-index: -1;
+    }
+
+    .foot {
+      height: 40px;
+      width: 40px;
+      background: #05ffa1;
+      border-radius: 40px;
+      border: 15px solid #b967ff;
+      position: relative;
+      left: 110px;
+      top: -10px;
+      z-index: -1;
+    }
+
+  </style>
 </head>
+
 <body>
-<p>I am waiting for awesome..</p>
+
+	<div class="robot">
+		<div class="beep"></div>
+		<div class="brain"></div>
+		<div class="torso">
+			<div class="left">j</div>
+			<div class="right">j</div>
+		</div>
+		<div class="foot"></div>
+	</div>
+
+	<button class="flash">laser eyes on/off</button>
+	<button class="color">change color!</button>
+	<button class="moves">Dance! / Rest!</button>
+
+	<img src="http://cloud-3.steamusercontent.com/ugc/514882136069790510/C1D9954F3978C47FC393ACB0D824AAF357EE11EC/">
+	
+	<script>
+		// When eyes button is clicked, toggle laser class on brain
+		$(".flash").click(function() {
+			$(".brain").toggleClass('laser');
+		});
+
+		// When color button is clicked...
+		$(".color").click(function() {
+
+			// assign each named color a random number 0-255
+			var red = Math.floor(Math.random() * 255);
+			var green = Math.floor(Math.random() * 255);
+			var blue = Math.floor(Math.random() * 255);
+			
+			// Generate an RGBA value
+			var randomRGBA = 'rgba('+red+','+green+','+blue+',1)';
+			
+			//Display the three values in an alert window
+			// alert(randomRGBA);
+			
+			//  and chhange the body's background to our random color
+			$("body").css("background", randomRGBA);
+		});
+
+		$(".moves").click(function() {
+			$("img").toggle();
+		});
+	</script>
 </body>
-</html>
+
+<!-- #ff71ce (255,113,206)
+#01cdfe (1,205,254)
+#05ffa1 (5,255,161)
+#b967ff (185,103,255)
+#fffb96 (255,251,150) -->
